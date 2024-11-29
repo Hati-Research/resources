@@ -41,9 +41,19 @@
         text-transform: uppercase;
         font-family: 'Open Sans', sans-serif;
         font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: italic;
+        font-size: 1.2rem;
+    }
+
+    .company-description {
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Open Sans', sans-serif;
+        font-optical-sizing: auto;
         font-weight: 600;
         font-style: normal;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .logo-circle {
         width: 400px;
@@ -53,34 +63,69 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: auto;
     }
+
     .logo {
         width: 250px;
         height: 250px;
     }
+
+    @media (max-width: 768px) {
+        .logo-circle {
+            width: 300px;
+            height: 300px;
+            margin: 20px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
     .logo-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+    .logo-section {
+        background-color: #434c5e;
+    }
+
+    .logo-section a {
+        color: #a3be8c;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Open Sans', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800;
+        font-style: normal;
+        font-size: 1.5rem;
+    }
+
 </style>
     </head>
     <body style="background-color:#434c5e;">
-        <section style="background-color:#434c5e;">
+        <section class="logo-section" style="background-color:#434c5e;">
             <div class="logo-container">
                 <div class="logo-circle">
                     <img class="logo" src="wolf.svg"/>
                 </div>
                 <h1 class="company-name" style="margin-top: 30px;">Hati Research</h1>
                 <br>
-                <h2 class="company-motto">From PCB to cloud</h2>
+                <h2 style="margin-top: 5px" class="company-motto">From PCB to cloud</h2>
+                <h3 style="margin-top: 45px" class ="company-description">Full stack prototype R&D and manufacturing</h3>
+                <a href="mailto:hyblmatous@gmail.com" style="margin-top: 35px">Contact us</a>
             </div>
         </section>
-        <section style="background-color:#5e81ac;">
-            <div>
-                <h1>A small SW&HW shop specializing in full stack prototype development and small scale manufacturing</h1>
-            </div>
-        </section>
+        <!-- <section style="background-color:#5e81ac;"> -->
+        <!--     <div> -->
+        <!--         <h1>A small SW&HW shop specializing in full stack prototype development and small scale manufacturing</h1> -->
+        <!--     </div> -->
+        <!-- </section> -->
     </body>
 </html>
