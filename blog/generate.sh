@@ -25,25 +25,30 @@ list_file=$(mktemp)
 
 for file in "${articles_array[@]}"; do
     path=$(echo "$file" | cut -d ' ' -f 2-)
-    filename=$(basename "$path" .md)
+    filedir=$(dirname "$path")
+    article=$(basename "$filedir")
+
     title=$(grep -m1 "^title:" "$path" | sed "s/title: //")
     author=$(grep -m1 "^author:" "$path" | sed "s/author: //")
     creation_date=$(grep -m1 "^date:" "$path" | sed "s/date: //")
 
     echo "===================================="
     echo "processing file: $path"
-    echo "filename: $filename"
+    echo "article name: $article"
     echo "title: $title"
     echo "author: $author"
     echo "creation date: $creation_date"
+    echo "filedir: $filedir"
 
-    mkdir -p "$output_dir/$filename"
+    mkdir -p "$output_dir/$article"
+    # TODO: in the future, remove article md from output directory
+    cp -r "$filedir" "$output_dir/" 
     pandoc "$path" \
-	    -o "$output_dir/$filename/index.html" \
+	    -o "$output_dir/$article/index.html" \
 	    --template=post-template.html \
 	    --highlight-style nord.theme
 
-    echo "<div class=\"item\"><a href=\"$filename\">$title</a><span class=\"date\">$creation_date</span> • $author</div>" >> $list_file
+    echo "<div class=\"item\"><a href=\"$article\">$title</a><span class=\"date\">$creation_date</span> • $author</div>" >> $list_file
 done
 
 pandoc "$list_file" -f html -o "out/index.html" --template=list-template.html
