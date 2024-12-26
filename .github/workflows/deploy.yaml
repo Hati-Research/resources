@@ -1,0 +1,41 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install pandoc
+        run: sudo apt-get install pandoc
+      - name: Build
+        run: |
+          mkdir deploy
+          cp index.html deploy/
+          cp wolf.svg deploy/
+          cp favicon.ico deploy/
+          pushd blog
+          ./generate.sh
+          popd
+          mkdir deploy/blog
+          mv blog/stylesheet.css deploy/blog
+          mv blog/out/* deploy/blog/
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'deploy'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+  

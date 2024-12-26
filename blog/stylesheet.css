@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    color: white;
+    background-color:#434c5e;
+}
+
+body {
+    background-color:#434c5e;
+    padding: 0px;
+    max-width: 100%;
+
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.column {
+    width: 100%;
+    max-width: 800px;
+}
+
+.list h1 {
+    margin-top: 10px;
+}
+
+.list h2 {
+    margin-top: 10px;
+}
+
+.list .item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.list .item a {
+    display: block;
+    color: white;
+    font-size: 1.2em;
+}
+
+.list .item a:visited {
+    display: block;
+    color: white;
+}
+
+.list .item .date {
+    color: #b48ead;
+}
+
+.post {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d8dee9;
+}
+
+.post h1 {
+    margin-top: 10px;
+}
+
+.post h2 {
+    margin-top: 10px;
+}
+
+.post p {
+    text-align: justify;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.post .metadata {
+    margin-top: 10px;
+}
+
+.post .metadata .date {
+    color: #b48ead;
+}
+
+.post > div > pre {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+code a {
+    color: white;
+    text-decoration: none;
+}
+
+code a:visited {
+    color: white;
+}
+
+/* override for pandoc's default formatting */
+pre > code.sourceCode > span > a:first-child::before {
+    color: white;
+    text-decoration: none;
+}
+
+/* override for pandoc's default formatting */
+blockquote {
+    color: white;
+    border-left: 2px solid #d08770;
+}
