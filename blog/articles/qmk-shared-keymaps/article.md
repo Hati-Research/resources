@@ -4,12 +4,11 @@ date: 26.12.2024
 keywords: qmk, mechanical-keyboards
 author: Matous Hybl
 ---
-After almost two years using my BastardKB's Scylla ergodox keyboard, I decided it was time to go deeper into the split-ergo mechanical keyboard rabbit hole and upgrade it to even smaller Skeletyl keyboard. This new keyboard has only 36 keys and I built it using the provided open-sourced PCBs and case STLs. As for the switches, I decided to go with the low-cost Akko Penguin Silents, but these have been so far surprisingly good.
-![](skeletyl.jpeg)
+After almost two years of using my BastardKB's Scylla ergodox keyboard, I decided it was time to go deeper into the split-ergo mechanical keyboard rabbit hole and upgrade it to the even smaller Skeletyl keyboard. This new keyboard has only 36 keys and I built it using the provided open-sourced PCBs and case STLs. As for the switches, I decided to go with the low-cost Akko Penguin Silents and they have been so far surprisingly good. ![](skeletyl.jpeg)
 _My Skeletyl build with temporary GMK Nord keycaps and Akko Penguin Silent switches_
 
-The reason for switching was that I had a suspicion that the switches I used started failing and I realized that I already hadn't used one entire column on each hand. Also I somehow managed to lose my QMK configs, so editing the current layout would require a lot of work that I didn't want to put into it.
-The final reason for the switch was that I wanted to explore some of QMK's features and possibilities including numpad-like number entry, caps-word and mouse-keys simple mouse use when travelling.
+The reason for switching was that I started to have suspicion that the switches I had used started failing and I realized that I already wasn't using one entire column on each side of the keyboard. Also I somehow managed to lose my QMK configs, so editing the current layout would require a lot of work that I didn't want to put into it.
+The final reason for the switch was that I wanted to explore some of QMK's features and possibilities including numpad-like number entry, caps-word and mouse-keys for basic mouse use when travelling.
 
 Once I built the Skeletyl and validated that typing on it was indeed possible and even good, I decided that I wanted to build a keyboard for travelling. I chose the Ferris Sweep Blinq LP, because it was easily obtainable via [42keebs](http://42keebs.eu). 
 
@@ -29,7 +28,7 @@ I discovered [qmk-userspace](http://github.com/qmk/qmk_userspace) which solves t
 It seemed however, that there was no way of sharing a keymap, but then I discovered that there is a mysterious `layouts` directory there and according to the [docs](https://docs.qmk.fm/feature_userspace) it should've been possible to use it to share keymaps. 
 Unfortunately, the docs didn't go into much detail of how to achieve that.
 
-So after some googling, prompting and banging my head against the wall, I did the following.
+So after some googling, prompting and banging my head against the wall, I did the following:
 
 1. Create a flavour of the Ferris Sweep keyboard by copying `qmk_firmware/keyboards/ferris/sweep` to `qmk_firmware/keyboards/ferris/hati_sweep`
 2. Change `hati_sweep`'s `keyboard.json` definition to support `split_3x5_3` layout used by the Skeletyl. This can be done by simply adding one more `null` to the last row of the matrix definitions and then modifying the supported layout, so that the extra key maps to the null matrix position.
@@ -57,7 +56,7 @@ So after some googling, prompting and banging my head against the wall, I did th
 		        ]
 		    }
 	    },
-	}
+	},
 	// .. unchanged
 	"layouts": {
 	    "LAYOUT_split_3x5_3": {
@@ -83,8 +82,8 @@ _keyboard.json_
    `qmk flash -kb bastardkb/skeletyl/v2/keeboar -km hati` for skeletyl and
    `qmk flash -kb ferris/hati_sweep -km hati` for the sweep
 
-Mission successful, now I can use a single keymap for both of the keyboards, with the same features enabled and thanks to the `qmk_userspace` repo and setup, I can simply push a change of the keymaps to the repository and CI will build it for me if I don't have the build environment ready locally.
-The only thing left is for qmk to support out-of-tree keyboard definitions so that I can use upstream qmk and not have to vendor it myself with keyboard specific changes.
+Mission successful, now I can use a single keymap for both of the keyboards, with the same features enabled and thanks to the `qmk_userspace` repo and setup, I can simply push a change of the keymaps to the repository and CI will build it for me when I don't have the build environment ready locally.
+The only thing left to be done is for qmk to support out-of-tree keyboard definitions so that I can use upstream qmk and not have to vendor it myself with keyboard specific changes.
    
 Both of the repositories can be found here: [qmk_firmware](https://github.com/matoushybl/qmk_firmware)
 [qmk_userspace](https://github.com/matoushybl/qmk_userspace)
