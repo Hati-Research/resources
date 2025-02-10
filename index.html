@@ -105,11 +105,36 @@
 
             #company-description {
                 text-transform: uppercase;
-                font-weight: 600;
-                font-style: normal;
                 font-size: 1.2rem;
 
                 margin-top: 45px
+            }
+
+            #scroll-down {
+                text-transform: uppercase;
+                font-weight: 300;
+                font-style: italic;
+                font-size: 0.9em;
+
+                position: absolute;
+                bottom: 24px;
+                left: 50%;
+                transform: translateX(-50%);
+                animation: bounce 1.5s infinite;
+                cursor: initial;
+                display: block;
+            }
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: translate(-50%, 0);
+                }
+
+                50% {
+                    transform: translate(-50%, 10px);
+                }
             }
 
             @media (max-width: 480px) {
@@ -141,11 +166,13 @@
                 }
 
                 #company-motto {
-                    margin-top: 5px;
+                    margin-top: 0px;
+                    display: none;
                 }
 
                 #company-description {
-                    margin-top: 10px;
+                    margin-top: 5px;
+                    margin-bottom: 30px;
                 }
             }
         </style>
@@ -157,6 +184,7 @@
             <br>
             <h2 id="company-motto">From PCB to cloud</h2>
             <h3 id="company-description">Full stack prototype R&amp;D and manufacturing</h3>
+            <p id="scroll-down">scroll down to find out more</p>
         </div>
     </section>
 
